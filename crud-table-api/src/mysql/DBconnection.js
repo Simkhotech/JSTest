@@ -1,38 +1,36 @@
 const mysql = require('mysql');
 const express = require('express');
+const {config} = require('../config');
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'dbuser',
-    password: 'dbuser',
-    database: 'crud_db'
+    host: config.dbConnection.host,
+    user: config.dbConnection.user,
+    password: config.dbConnection.password,
+    database: config.dbConnection.database,
 });
+
 
 function createTable() {
 
     connection.query(`DROP TABLE IF EXISTS crud_table`, function (err, rows, fields) {
         if (err) throw err;
-
-        console.log(`Dropped table crud_table (if need)`)
     });
 
     connection.query(
         `CREATE TABLE crud_table (
-            id varchar(255), 
-            age varchar(255), 
-            name varchar(255), 
-            gender varchar(255), 
-            company varchar(255), 
-            email varchar(255), 
-            phone varchar(255), 
-            address varchar(255) 
+            id varchar(255),
+            age varchar(255),
+            name varchar(255),
+            gender varchar(255),
+            company varchar(255),
+            email varchar(255),
+            phone varchar(255),
+            address varchar(255)
         );`, function (err, rows, fields) {
             if (err) throw err;
-
-            console.log(`Created new table crud_table (if need)`)
         });
 
-};
+}
 
 connection.connect(err => {
     if (err) throw err;
@@ -52,13 +50,8 @@ module.exports.insertRows = function insertRows(arrayOfObjects) {
         console.log(query);
 
         connection.query(
-            query, obj,  function (err, rows, fields) {
-            if (err) throw err;
-
-            console.log(`Dropped table crud_table (if need)`)
-        });
+            query, obj, function (err, rows, fields) {
+                if (err) throw err;
+            });
     });
-
-    // connection.destroy();
-    // console.log("Connection closed!");
 };
