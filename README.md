@@ -10,15 +10,15 @@
 
 #### 1. Без БД никуда!
 В установленном MySQL нужно создать базу данных и пользователя для работы с ней.
-Приложение использует следующий данные, описанные [здесь в строках 4-9](https://github.com/Simkhotech/JSTest/blob/ed0fa5cb8e968ec429cc8e768d89483d5337e8e4/crud-table-api/src/config.js#L3-L6):
+Приложение использует следующий данные, описанные [здесь в строках 3-6](https://github.com/Simkhotech/JSTest/blob/ed0fa5cb8e968ec429cc8e768d89483d5337e8e4/crud-table-api/src/config.js#L3-L6):
 
-```JavaScript
-    const connection = mysql.createConnection({
+```JSON
+    {
         host: 'localhost',
         user: 'dbuser',
         password: 'dbuser',
         database: 'crud_db'
-    });
+    }
 ```
 
 Хотя можно вставить свои!
