@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
+import {Button, ButtonGroup} from "react-bootstrap";
+
 import 'react-bootstrap-table/css/react-bootstrap-table.css';
 
 import toDownloadJSON from '../actions/toDownloadJSON'
-import {Button, ButtonGroup} from "react-bootstrap";
+import config from '../config'
 
 class CustomInsert extends React.Component {
 
@@ -21,7 +23,7 @@ class CustomInsert extends React.Component {
 
         this.handleSaveBtnClick(columns, onSave);
 
-        return(<div>=)</div>);
+        return (<div>=)</div>);
     }
 }
 
@@ -32,10 +34,25 @@ export default class App extends Component {
     };
 
     saveInDB = () => {
+        let first = true;
         const xmlHttp = new XMLHttpRequest();
-        xmlHttp.open("POST", 'http://localhost:3001', true); // false for synchronous request
+
+        xmlHttp.open("POST", config.dbServer, true);
+
         xmlHttp.setRequestHeader("Content-type", "application/json");
         xmlHttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+
+        xmlHttp.onreadystatechange = () => {
+            if (first && xmlHttp.readyState === XMLHttpRequest.DONE) {
+                alert(
+                    (xmlHttp.status === 200) ?
+                        `Saved!` : `Not Saved! (${xmlHttp.status})`
+                );
+                first = false;
+            }
+
+        }
+
         xmlHttp.send(JSON.stringify(this.refs.bTable.state.data));
     };
 
@@ -97,4 +114,3 @@ export default class App extends Component {
         );
     }
 }
-

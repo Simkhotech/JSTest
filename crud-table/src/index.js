@@ -4,4 +4,4 @@ import App from './components/App';
 
 import items from './JSTest.json'
 
-ReactDOM.render(<App items = { items } />, document.getElementById('root'));
+ReactDOM.render(<App items={items}/>, document.getElementById('root'));
