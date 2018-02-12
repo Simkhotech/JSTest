@@ -10,7 +10,7 @@
 
 #### 1. Без БД никуда!
 В установленном MySQL нужно создать базу данных и пользователя для работы с ней.
-Приложение использует следующий данные, описанные [здесь в строках 4-9](https://github.com/Simkhotech/JSTest/blob/9b6252763a86a02613ea0064230ac82e3105ddfb/crud-table-api/src/mysql/DBconnection.js#L4-L9):
+Приложение использует следующий данные, описанные [здесь в строках 4-9](https://github.com/Simkhotech/JSTest/blob/ed0fa5cb8e968ec429cc8e768d89483d5337e8e4/crud-table-api/src/config.js#L3-L6):
 
 ```JavaScript
     const connection = mysql.createConnection({
@@ -20,6 +20,8 @@
         database: 'crud_db'
     });
 ```
+
+Хотя можно вставить свои!
 
 #### 2. Готовим сервак к старту
 В любимой командной строке черканем пару строк.
@@ -131,4 +133,3 @@ License
 MIT
 
 **Free Software, Hell Yeah!**
-
