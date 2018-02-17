@@ -54,4 +54,18 @@ module.exports.insertRows = function insertRows(arrayOfObjects) {
                 if (err) throw err;
             });
     });
+
+};
+
+module.exports.selectRows = (callback) =>{
+
+    let result = [];
+
+    connection.query(`SELECT * FROM crud_table`, function (err, res, fields) {
+        if (err) throw err;
+        result = JSON.stringify(res);
+
+        console.log(result);
+        return callback(result);
+    });
 };

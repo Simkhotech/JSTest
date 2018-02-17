@@ -20,16 +20,19 @@ app.use(bodyParser.json());
 app.use('/', router);
 
 router.post('/', function (req, res) {
-    console.log(req);
-
-    let arrayOfObjects = req.body;
-
-    console.log(arrayOfObjects);
-
     try {
-        DBconnection.insertRows(arrayOfObjects);
+        DBconnection.insertRows(req.body);
         res.send("Done");
 
+    } catch (e) {
+        console.warn("NOPE!!! : " + e);
+        res.sendStatus(400);
+    }
+});
+
+app.get('/', function(req, res) {
+    try {
+        JSON.stringify(DBconnection.selectRows((result) => res.send(result)));
     } catch (e) {
         console.warn("NOPE!!! : " + e);
         res.sendStatus(400);
